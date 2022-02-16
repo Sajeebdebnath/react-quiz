@@ -1,9 +1,9 @@
 import React from "react";
 import classes from "../styles/Form.module.css";
 
-const Button = ({ children, ...rest }) => {
+const Button = ({ className, children, ...rest }) => {
   return (
-    <div className={classes.button} {...rest}>
+    <div className={`${classes.button} ${className}`} {...rest}>
       {children}
     </div>
   );
