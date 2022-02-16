@@ -4,6 +4,7 @@ import Illustration from "../Illustration";
 import LoginForm from "../LoginForm";
 
 const Login = () => {
+  document.title = "Login";
   return (
     <>
       <h1>Login to your account</h1>

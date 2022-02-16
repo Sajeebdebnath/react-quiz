@@ -3,6 +3,7 @@ import Analysis from "../Analysis";
 import Summery from "../Summery";
 
 const Result = () => {
+  document.title = "Result";
   return (
     <>
       <Summery></Summery>

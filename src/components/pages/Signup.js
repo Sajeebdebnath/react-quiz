@@ -4,6 +4,7 @@ import Illustration from "../Illustration";
 import SignUpForm from "../SignUpForm";
 
 const Signup = () => {
+  document.title = "Signup";
   return (
     <>
       <h1>Create an account</h1>

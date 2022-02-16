@@ -4,6 +4,7 @@ import MiniPlayer from "../MiniPlayer";
 import ProgressBar from "../ProgressBar";
 
 const Quiz = () => {
+  document.title = "Quiz";
   return (
     <>
       <h1>Pick three of your favorite Star Wars Flims</h1>
