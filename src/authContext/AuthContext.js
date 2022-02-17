@@ -8,13 +8,14 @@ import {
 } from "firebase/auth";
 import React, { createContext, useContext, useEffect, useState } from "react";
 import "../firebase";
-const AuthContext = createContext();
+
+export const AuthContext = createContext();
 
 export const useAuth = () => {
   return useContext(AuthContext);
 };
 
-export const AuthProvider = (children) => {
+export function AuthProvider({ children }) {
   const [loading, setLoading] = useState(true);
   const [currentUser, setCurrentUser] = useState();
 
@@ -25,7 +26,7 @@ export const AuthProvider = (children) => {
       setLoading(false);
     });
     return unsubscribe;
-  });
+  }, []);
 
   //signup
   async function signUp(email, password, username) {
@@ -67,4 +68,4 @@ export const AuthProvider = (children) => {
       {!loading && children}
     </AuthContext.Provider>
   );
-};
+}
