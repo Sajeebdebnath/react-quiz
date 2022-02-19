@@ -1,16 +1,21 @@
 import React, { useState } from "react";
+import InfiniteScroll from "react-infinite-scroll-component";
 import useVideoList from "../hooks/useVideoList";
-import classes from "../styles/Video.module.css";
 import Video from "./Video";
 
 const Videos = () => {
   const [page, setPage] = useState(1);
-  const { loading, error, videos } = useVideoList(page);
+  const { loading, error, videos, hasMore } = useVideoList(page);
   console.log(videos);
   return (
-    <div className={classes.videos}>
+    <div>
       {videos.length > 0 && (
-        <>
+        <InfiniteScroll
+          dataLength={videos.length}
+          next={() => setPage(page + 9)}
+          loader={<h4>Loading...</h4>}
+          hasMore={hasMore}
+        >
           {videos.map((video) => {
             return (
               <Video
@@ -21,7 +26,7 @@ const Videos = () => {
               ></Video>
             );
           })}
-        </>
+        </InfiniteScroll>
       )}
       {!loading && videos.length === 0 && <div>No data found!</div>}
       {error && <div>There was a error!</div>}

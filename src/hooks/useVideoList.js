@@ -13,6 +13,7 @@ const useVideoList = (page) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [videos, setVideos] = useState([]);
+  const [hasMore, setHasMore] = useState(true);
 
   useEffect(() => {
     async function fetchVideos() {
@@ -37,6 +38,8 @@ const useVideoList = (page) => {
           setVideos((prevVideos) => {
             return [...prevVideos, ...Object.values(snapshot.val())];
           });
+        } else {
+          setHasMore(false);
         }
       } catch (error) {
         setLoading(false);
@@ -51,6 +54,7 @@ const useVideoList = (page) => {
     loading,
     error,
     videos,
+    hasMore,
   };
 };
 
