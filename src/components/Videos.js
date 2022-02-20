@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
+import { Link } from "react-router-dom";
 import useVideoList from "../hooks/useVideoList";
 import Video from "./Video";
 
@@ -18,12 +19,24 @@ const Videos = () => {
         >
           {videos.map((video) => {
             return (
-              <Video
-                key={video.youtubeID}
-                title={video.title}
-                youtubeID={video.youtubeID}
-                noq={video.noq}
-              ></Video>
+              <>
+                {video.noq > 0 ? (
+                  <Link to={`/quiz/${video.youtubeID}`} key={video.youtubeID}>
+                    <Video
+                      title={video.title}
+                      youtubeID={video.youtubeID}
+                      noq={video.noq}
+                    />
+                  </Link>
+                ) : (
+                  <Video
+                    key={video.youtubeID}
+                    title={video.title}
+                    youtubeID={video.youtubeID}
+                    noq={video.noq}
+                  />
+                )}
+              </>
             );
           })}
         </InfiniteScroll>
